@@ -1,5 +1,4 @@
 import io.github.nishikigii.kvia.basic.Result
-import io.github.nishikigii.kvia.basic.catch
 import java.io.IOException
 import java.time.LocalTime
 import kotlin.random.Random

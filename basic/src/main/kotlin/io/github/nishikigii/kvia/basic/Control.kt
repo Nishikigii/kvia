@@ -1,5 +1,10 @@
 package io.github.nishikigii.kvia.basic
 
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
+
 /**
  * loop scope.
  */
@@ -9,6 +14,7 @@ interface Loop
      * break loop.
      */
     fun escape()
+
 }
 
 /**
@@ -19,20 +25,21 @@ interface Loop
  */
 inline fun <T> loop( millis: ULong = 0uL,content: Loop.()->T ): T
 {
-    var key = true
+    var escape = false
     val scope = object: Loop
     {
         override fun escape() {
-            key = false
+            escape = true
         }
     }
-    val switch = (millis == 0uL)
-    val waiting = millis.toLong()
+    val switch = (millis != 0uL)
+    val waiting = if ( switch ) millis.toLong() else 0L
     var result = scope.content()
-    while (key) result = if ( switch ) scope.content() else {
-        pause(waiting); scope.content()
+    loop@while (true) {
+        if ( escape ) return result
+        if ( switch ) pause(waiting)
+        result = scope.content()
     }
-    return result
 }
 
 /**

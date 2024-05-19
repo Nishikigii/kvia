@@ -8,6 +8,7 @@ version = "0.0.0"
 
 dependencies {
     api( project(":basic") )
+    implementation( project(":logging") )
     testImplementation(kotlin("reflect"))
 }
 

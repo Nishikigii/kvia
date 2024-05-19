@@ -8,7 +8,7 @@ import java.net.URI
  */
 class Maven
 {
-    class Item( override val group: String, override val name: String, val version: String ): Application
+    class Item( val group: String, val name: String, val version: String )
 
     abstract class Repository private constructor()
     {

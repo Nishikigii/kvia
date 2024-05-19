@@ -6,6 +6,13 @@ plugins {
 group = "io.github.nishikigii.kvia"
 version = "0.0.0"
 
+dependencies {
+
+    // Kotlin SDK
+    api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1-Beta")
+
+}
+
 publishing {
     repositories {
         mavenLocal()
@@ -18,8 +25,4 @@ publishing {
             version = project.version as String
         }
     }
-}
-
-tasks.test {
-    useJUnitPlatform()
 }

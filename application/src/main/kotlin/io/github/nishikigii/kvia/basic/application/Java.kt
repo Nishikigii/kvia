@@ -19,13 +19,13 @@ data class Java (
 
     val source: String,
 
-    override val executable: String,
+    val executable: String,
 
-    override val group: String,
+    val group: String,
 
-    override val name: String
+    val name: String
 
-): Executable
+)
 {
     companion object
     {
